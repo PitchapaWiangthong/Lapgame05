@@ -2,6 +2,8 @@
 #include<conio.h>
 #include<windows.h>
 
+#define bullet_count 5
+
 void draw_ship(int, int);
 void erase_ship(int, int);
 void gotoxy(int, int);
@@ -15,8 +17,8 @@ int main()
 {
 	char ch = '.';
 	char direction = 's';
-	int x = 38, y = 20,bx[5],by[5];
-	bool state[5] = {0};
+	int x = 38, y = 20,bx[bullet_count],by[bullet_count];
+	bool state[bullet_count] = {0};
 	setcursor(0);
 	gotoxy(x,y);
 	draw_ship(x,y);
@@ -27,7 +29,7 @@ int main()
 			if (ch == 'd')	{direction = 'r';}
 			if (ch == 's')	{direction = 's';}
 			if (ch == ' ') {
-				for (int i = 0; i < 5; i++)
+				for (int i = 0; i < bullet_count; i++)
 				{
 					if (state[i] == 0)
 					{
@@ -43,7 +45,7 @@ int main()
 		if (direction == 'l' && x != 0) { erase_ship(x, y); draw_ship(--x, y); }
 		if (direction == 'r' && x <= 80) { erase_ship(x, y); draw_ship(++x, y); }
 		if (direction == 's') { erase_ship(x, y); draw_ship(x, y); }
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < bullet_count; i++)
 		{
 			if (state[i] == 1)
 			{
